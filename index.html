@@ -1,49 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthcare Web App</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+        .portal-container { max-width: 800px; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .button { padding: 10px 20px; color: white; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .table th, .table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Healthcare Web App</h1>
-    <nav>
-      <a href="#records">Health Records</a>
-      <a href="#messaging">Secure Messaging</a>
-      <a href="#features">Features</a>
-    </nav>
-  </header>
+    <div class="portal-container">
+        <h1>Patient Portal</h1>
+        
+        <!-- Section for viewing health records -->
+        <h2>Health Records</h2>
+        <table class="table" id="recordsTable">
+            <tr><th>Record Name</th><th>Link</th></tr>
+        </table>
+        <button class="button" onclick="fetchRecords()">Load Records</button>
 
-  <main>
-    <section id="records">
-      <h2>Access Your Health Records</h2>
-      <p>View your medical history, test results, and appointments securely anytime, anywhere.</p>
-      <button id="viewRecordsBtn">View Records</button>
-    </section>
+        <!-- Section for messaging -->
+        <h2>Send a Message</h2>
+        <form id="messageForm">
+            <input type="text" id="from" placeholder="Your Name" required><br><br>
+            <input type="text" id="to" placeholder="Recipient Name" required><br><br>
+            <textarea id="content" placeholder="Message" required></textarea><br><br>
+            <button type="button" class="button" onclick="sendMessage()">Send Message</button>
+        </form>
+    </div>
 
-    <section id="messaging">
-      <h2>Secure Messaging</h2>
-      <p>Communicate directly with your healthcare provider securely and conveniently.</p>
-      <textarea id="messageBox" placeholder="Type your message here"></textarea>
-      <button id="sendMessageBtn">Send Message</button>
-    </section>
+    <script>
+        // Function to fetch health records
+        async function fetchRecords() {
+            const response = await fetch('/api/records/123', {
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+            });
+            const records = await response.json();
+            const table = document.getElementById('recordsTable');
+            table.innerHTML = '<tr><th>Record Name</th><th>Link</th></tr>'; // Clear old data
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${record}</td><td><a href="${record}" target="_blank">View</a></td>`;
+                table.appendChild(row);
+            });
+        }
 
-    <section id="features">
-      <h2>Why Choose Us?</h2>
-      <ul>
-        <li>24/7 health records access</li>
-        <li>Encrypted and secure communication</li>
-        <li>Customizable white-label solution</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2024 Healthcare Web App. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+        // Function to send a message
+        async function sendMessage() {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const content = document.getElementById('content').value;
+            
+            await fetch('/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') },
+                body: JSON.stringify({ from, to, content })
+            });
+            alert('Message sent!');
+        }
+    </script>
 </body>
 </html>
