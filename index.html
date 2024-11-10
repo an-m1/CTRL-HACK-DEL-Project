@@ -146,6 +146,13 @@
         }
 
         displayPatients();
+
+        function addPatient(patient) {
+            patients.push(patient);
+            localStorage.setItem('patients', JSON.stringify(patients));
+            displayPatients();
+        }
+        
     </script>
 
     <!-- Description of the institution -->
