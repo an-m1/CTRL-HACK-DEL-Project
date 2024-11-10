@@ -21,8 +21,8 @@ function loadPatientDetails() {
         document.getElementById('allergies').textContent = patient.allergies;
         document.getElementById('healthRecords').textContent = patient.healthRecords;
         document.getElementById('familyHealthRecords').textContent = patient.familyHealthRecords;
-        document.getElementById('nextAppointment').textContent = patient.nextAppointment;
-        document.getElementById('lastAppointment').textContent = patient.lastAppointment;
+        // document.getElementById('nextAppointment').textContent = patient.nextAppointment;
+        // document.getElementById('lastAppointment').textContent = patient.lastAppointment;
         document.getElementById('emergencyContact').textContent = patient.emergencyContact;
         document.getElementById('contact').textContent = patient.contact;
         document.getElementById('address').textContent = patient.address;
