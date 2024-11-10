@@ -1,103 +1,211 @@
 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-let currentDate = new Date(); // Track current date
+let patientDetails = JSON.parse(localStorage.getItem('patientDetails')) || [];
+let currentDate = new Date();
 
-// Function to update the calendar display for the current month
+function generateId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function changeMonth(direction) {
+    currentDate.setMonth(currentDate.getMonth() + direction);
+    updateCalendar();
+}
+
+let searchMode = false;
+
 function updateCalendar() {
     const calendarDiv = document.getElementById('calendar');
-    const month = currentDate.getMonth(); // Get current month
-    const year = currentDate.getFullYear(); // Get current year
-    const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get number of days in current month
-
-    // Set the month name for navigation
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
     const monthName = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
     document.getElementById('monthName').textContent = monthName;
 
-    // Clear previous calendar
+    if (searchMode) {
+        return;
+    }
+
     calendarDiv.innerHTML = '';
 
-    // Create the grid of days
+    // Loop through the days of the month and display them
     for (let day = 1; day <= daysInMonth; day++) {
         const dayDiv = document.createElement('div');
         dayDiv.classList.add('day');
-
-        // Add the date to the div
         const date = new Date(year, month, day);
         dayDiv.innerHTML = `<strong>${day}</strong>`;
 
-        // Find appointments for this date
-        const dayAppointments = appointments.filter(app => new Date(app.date).toDateString() === date.toDateString());
+        const dayAppointments = appointments.filter(app => {
+            const appDate = new Date(app.date);
+            return appDate.toISOString().split('T')[0] === date.toISOString().split('T')[0];
+        });
 
-        // Display the appointments for this day
         const appointmentDiv = document.createElement('div');
         appointmentDiv.classList.add('appointments');
+
         dayAppointments.forEach(app => {
             appointmentDiv.innerHTML += `${app.patientName} at ${app.time}<br>`;
         });
 
         dayDiv.appendChild(appointmentDiv);
-
-        // Add a button to add a new appointment
-        const button = document.createElement('button');
-        button.textContent = 'Add Appointment';
-        button.onclick = () => openAppointmentForm(date);
-        dayDiv.appendChild(button);
-
         calendarDiv.appendChild(dayDiv);
+    }
+
+    // Add the "Add Appointment" button outside of individual days, just below the calendar
+    const addAppointmentButton = document.createElement('button');
+    addAppointmentButton.textContent = 'Add Appointment';
+    addAppointmentButton.onclick = () => openAppointmentForm(new Date(year, month, 1));  // Pass a placeholder date
+    calendarDiv.appendChild(addAppointmentButton);
+}
+
+function displayAppointmentsTable(filteredAppointments) {
+    const table = document.getElementById('appointmentTable');
+    const tbody = document.getElementById('appointmentTableBody');
+    tbody.innerHTML = '';
+
+    if (filteredAppointments.length > 0) {
+        table.style.display = 'table';
+        filteredAppointments.forEach((app) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${app.patientName}</td>
+                <td>${app.healthCardNumber || 'N/A'}</td>
+                <td>${app.date}</td>
+                <td>${app.time}</td>
+                <td>
+                    <button onclick="editAppointment('${app.id}')">Edit</button>
+                    <button onclick="deleteAppointment('${app.id}')">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    } else {
+        table.style.display = 'none';
     }
 }
 
-// Function to navigate to the previous month
-function changeMonth(offset) {
-    currentDate.setMonth(currentDate.getMonth() + offset);
-    updateCalendar();
+function searchPatient() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    const filteredAppointments = appointments.filter(app => app.patientName.toLowerCase().includes(query));
+    displayAppointmentsTable(filteredAppointments);
+    updateCalendarWithFilteredAppointments(filteredAppointments);  // Update calendar with the filtered appointments
 }
 
-// Function to open the appointment form
+function displaySearchResults(filteredAppointments) {
+    const resultsTable = document.getElementById('searchResults');
+    resultsTable.innerHTML = '';
+
+    if (filteredAppointments.length === 0) {
+        resultsTable.innerHTML = '<tr><td colspan="5">No appointments found</td></tr>';
+        return;
+    }
+
+    resultsTable.innerHTML = `
+        <tr>
+            <th>Patient Name</th>
+            <th>Health Card Number</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    `;
+
+    filteredAppointments.forEach(app => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${app.patientName}</td>
+            <td>${app.healthCardNumber}</td>
+            <td>${app.time}</td>
+            <td>${app.date}</td>
+            <td><button onclick="editAppointment('${app.id}')">Edit</button></td>
+        `;
+        resultsTable.appendChild(row);
+    });
+}
+
 function openAppointmentForm(date) {
     const formContainer = document.getElementById('appointmentForm');
     formContainer.style.display = 'block';
-
-    // Pre-fill the form with the selected date
     document.getElementById('appointmentDate').value = date.toISOString().split('T')[0];
+    document.getElementById('appointmentFormContent').reset();
+
+    const form = document.getElementById('appointmentFormContent');
+    form.onsubmit = function (e) {
+        e.preventDefault();
+        saveAppointment();
+    };
 }
 
-// Function to save the new appointment
-document.getElementById('appointmentFormContent').addEventListener('submit', function (e) {
-    e.preventDefault();
+function cancelAppointment() {
+    document.getElementById('appointmentForm').style.display = 'none';
+}
 
+function editAppointment(appointmentId) {
+    const appointment = appointments.find(app => app.id === appointmentId);
+    if (appointment) {
+        document.getElementById('patientName').value = appointment.patientName;
+        document.getElementById('healthCardNumber').value = appointment.healthCardNumber;
+        document.getElementById('appointmentTime').value = appointment.time;
+        document.getElementById('appointmentDate').value = appointment.date;
+        document.getElementById('appointmentForm').style.display = 'block';
+        document.getElementById('appointmentFormContent').onsubmit = (e) => {
+            e.preventDefault();
+            saveAppointment(appointmentId);
+        };
+    }
+}
+
+function saveAppointment(appointmentId) {
     const patientName = document.getElementById('patientName').value;
-    const appointmentTime = document.getElementById('appointmentTime').value;
-    const appointmentDate = document.getElementById('appointmentDate').value;
+    const healthCardNumber = document.getElementById('healthCardNumber').value;
+    const time = document.getElementById('appointmentTime').value;
+    const date = document.getElementById('appointmentDate').value;
 
-    // Create an appointment object
+    if (!patientName || !healthCardNumber || !time || !date) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
     const newAppointment = {
-        patientName: patientName,
-        time: appointmentTime,
-        date: appointmentDate
+        id: appointmentId || generateId(),  // If editing, use the existing ID
+        patientName,
+        healthCardNumber,
+        time,
+        date
     };
 
-    // Add the appointment to the list and save it to localStorage
-    appointments.push(newAppointment);
+    // Get the current appointments from localStorage
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    
+    // If an appointment is being edited, update it instead of adding a new one
+    if (appointmentId) {
+        const index = appointments.findIndex(app => app.id === appointmentId);
+        if (index !== -1) {
+            appointments[index] = newAppointment;
+        }
+    } else {
+        // Otherwise, it's a new appointment, so add it to the array
+        appointments.push(newAppointment);
+    }
+
+    // Save the updated appointments back to localStorage
     localStorage.setItem('appointments', JSON.stringify(appointments));
 
-    // Reload the calendar to reflect the new appointment
-    updateCalendar();
+    // Update the calendar with the new or edited appointment
+    updateCalendar(); // This will ensure the calendar is updated with the new appointment
 
-    // Close the form
-    cancelAppointment();
-});
-
-// Function to cancel the appointment form
-function cancelAppointment() {
-    const formContainer = document.getElementById('appointmentForm');
-    formContainer.style.display = 'none';
-    document.getElementById('patientName').value = '';
-    document.getElementById('appointmentTime').value = '';
-    document.getElementById('appointmentDate').value = '';
+    // Reload the page to reflect the updated data
+    location.reload();  // Page reloads to reflect changes
 }
 
-
-// Initial call to update the calendar
-document.addEventListener("DOMContentLoaded", function () {
+function deleteAppointment(appointmentId) {
+    appointments = appointments.filter(app => app.id !== appointmentId);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
     updateCalendar();
-});
+}
+
+function loadAppointments() {
+    displayAppointmentsTable(appointments);
+}
+
+loadAppointments();
+updateCalendar();

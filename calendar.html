@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial="1.0">
     <title>Patient Appointment Calendar</title>
     <style>
+        /* Style updates for the calendar and table */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        h1 {
+        h1, h3 {
             text-align: center;
+        }
+        .calendar, .appointment-table {
+            margin-top: 20px;
         }
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             grid-gap: 5px;
-            margin-top: 20px;
         }
         .calendar .day {
             padding: 10px;
@@ -44,6 +47,34 @@
         .day button:hover {
             background-color: #45a049;
         }
+        .month-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .appointment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .appointment-table th, .appointment-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .weekday-row {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
         .form-container {
             display: none;
             margin-top: 20px;
@@ -56,18 +87,32 @@
             padding: 5px 10px;
             cursor: pointer;
         }
-        .month-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body>
 
 <h1>Patient Appointment Calendar</h1>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search for a patient by name..." oninput="searchPatient()">
+</div>
+
+<!-- Table for displaying all existing patients -->
+<h3>Existing Patients</h3>
+<table id="appointmentTable" style="display:none;">
+    <thead>
+        <tr>
+            <th>Patient Name</th>
+            <th>Health Card Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="appointmentTableBody">
+        <!-- Rows will be inserted here dynamically -->
+    </tbody>
+</table>
 
 <div class="month-navigation">
     <button onclick="changeMonth(-1)">&#8249; Previous</button>
@@ -75,13 +120,40 @@
     <button onclick="changeMonth(1)">Next &#8250;</button>
 </div>
 
+<div class="weekday-row">
+    <div>Monday</div>
+    <div>Tuesday</div>
+    <div>Wednesday</div>
+    <div>Thursday</div>
+    <div>Friday</div>
+    <div>Saturday</div>
+    <div>Sunday</div>
+</div>
+
 <div class="calendar" id="calendar"></div>
 
+
+<!-- Appointment Table -->
+<table class="appointment-table" id="appointmentTable" style="display: none;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Health Card Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="appointmentTableBody"></tbody>
+</table>
+
 <div class="form-container" id="appointmentForm">
-    <h3>Add New Appointment</h3>
+    <h3>Add/Edit Appointment</h3>
     <form id="appointmentFormContent">
         <label for="patientName">Patient Name:</label>
         <input type="text" id="patientName" required><br>
+        <label for="healthCardNumber">Health Card Number:</label>
+        <input type="text" id="healthCardNumber" required><br>
         <label for="appointmentTime">Appointment Time:</label>
         <input type="time" id="appointmentTime" required><br>
         <label for="appointmentDate">Appointment Date:</label>
@@ -90,8 +162,11 @@
         <button type="button" onclick="cancelAppointment()">Cancel</button>
     </form>
 </div>
-<button onclick="window.location.href='index.html'">Back to Home</button>
 
+<!-- Single Add Appointment Button -->
+<button id="addAppointmentBtn" onclick="openAppointmentForm()">Add Appointment</button>
+
+<button onclick="window.location.href='index.html'">Back to Home</button>
 
 <script src="calendarScript.js"></script>
 
