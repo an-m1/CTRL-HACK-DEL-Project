@@ -19,7 +19,7 @@ body {
 
 /* Title Styling */
 header h1 {
-  font-size: 2.5rem; /* Larger font size for emphasis */
+  font-size: 5rem; /* Larger font size for emphasis */
   color: #009999; /* Turquoise */
   margin: 0 0 20px 0; /* Add space below the title */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
@@ -124,7 +124,7 @@ table tr:hover td {
 /* Button Styling */
 button {
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #FFFFFF;
   background-color: #00B3B3; /* Turquoise */
   border: none;
@@ -132,6 +132,8 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow for depth */
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 button:hover {
@@ -210,6 +212,7 @@ footer {
     text-align: justify; /* Justify text for a polished appearance */
 }
 .description {
+ 
   background: linear-gradient(145deg, #e0f7ff, #d1e7f8); /* Subtle gradient for modern appeal */
   border-radius: 12px; /* Rounded corners */
   padding: 30px; /* Spacious padding for a clean layout */
