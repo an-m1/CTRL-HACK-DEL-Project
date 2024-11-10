@@ -1,35 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="addPatient.css">
     <title>Add New Patient</title>
 </head>
+
 <body>
+    <div class="container">
+        <h1>Add New Patient</h1>
 
-<h1>Add New Patient</h1>
+        <form id="addPatientForm">
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="form-row">
+                    <div>
+                        <label for="name">* Name:</label>
+                        <input type="text" id="name" placeholder="First/Last" required>
+                    </div>
+                    <div>
+                        <label for="age">* Age:</label>
+                        <input type="number" id="age" placeholder="Age" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="gender">* Sex:</label>
+                        <input type="text" id="gender" placeholder="Male/Female" required>
+                    </div>
+                    <div>
+                        <label for="personalContact">* Contact Information:</label>
+                        <input type="text" id="personalContact" placeholder="Phone Number" required>
+                    </div>
+                </div>
+            </div>
 
-<form id="addPatientForm">
-    <input type="text" id="name" placeholder="Name" required><br><br>
-    <input type="number" id="age" placeholder="Age"><br><br>
-    <input type="text" id="gender" placeholder="Gender"><br><br>
-    <input type="text" id="illness" placeholder="Illness"><br><br>
-    <input type="text" id="allergies" placeholder="Allergies"><br><br>
-    <input type="text" id="healthRecords" placeholder="Health Records"><br><br>
-    <input type="text" id="familyHealthRecords" placeholder="Family Health Records"><br><br>
-    <input type="text" id="nextAppointment" placeholder="Next Appointment"><br><br>
-    <input type="text" id="lastAppointment" placeholder="Last Appointment"><br><br>
-    <input type="text" id="emergencyContact" placeholder="Emergency Contact"><br><br>
-    <input type="text" id="contact" placeholder="Contact"><br><br>
-    <input type="text" id="address" placeholder="Address"><br><br>
-    <input type="text" id="importantNotes" placeholder="Important Notes"><br><br>
-    <input type="text" id="healthCardNumber" placeholder="Health Card Number"><br><br>
+            <!-- Health Card Section -->
+            <div class="form-section">
+                <h2>Health Card Information</h2>
+                <div>
+                    <label for="healthCardNumber">* Health Card Number:</label>
+                    <input type="text" id="healthCardNumber" placeholder="Health Card Number" required>
+                </div>
+            </div>
 
-    <button type="submit">Add Patient</button>
-</form>
+            <!-- Medical Information Section -->
+            <div class="form-section">
+                <h2>Medical Information</h2>
+                <div class="form-row">
+                    <div>
+                        <label for="illness">* Illness:</label>
+                        <input type="text" id="illness" list="commonIllnesses" placeholder="i.e. cold" required>
+                        <datalist id="commonIllnesses">
+                            <option value="Cold">
+                            <option value="Flu">
+                            <option value="Asthma">
+                            <option value="Diabetes">
+                            <option value="Hypertension">
+                            <option value="Allergies">
+                            <option value="Bronchitis">
+                            <option value="Pneumonia">
+                            <option value="Tuberculosis">
+                            <option value="COVID-19">
+                            <option value="Chickenpox">
+                            <option value="Measles">
+                            <option value="Mumps">
+                            <option value="Hepatitis A">
+                            <option value="Hepatitis B">
+                            <option value="Hepatitis C">
+                            <option value="Dengue Fever">
+                            <option value="Malaria">
+                            <option value="Typhoid Fever">
+                            <option value="Ebola">
+                            <option value="HIV/AIDS">
+                            <option value="Cholera">
+                            <option value="Zika Virus">
+                            <option value="Lyme Disease">
+                            <option value="Sinus Infection">
+                            <option value="Migraine">
+                            <option value="Heart Disease">
+                            <option value="Cancer">
+                            <option value="Stroke">
+                            <option value="Arthritis">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="allergies">* Allergies:</label>
+                        <input type="text" id="allergies" list="commonAllergies" placeholder="i.e. peanuts" required>
+                        <datalist id="commonAllergies">
+                            <option value="Peanuts">
+                            <option value="Shellfish">
+                            <option value="Milk">
+                            <option value="Eggs">
+                            <option value="Soy">
+                            <option value="Wheat">
+                            <option value="Tree Nuts">
+                            <option value="Fish">
+                            <option value="Pollen">
+                            <option value="Dust Mites">
+                            <option value="Mold">
+                            <option value="Animal Dander">
+                            <option value="Latex">
+                            <option value="Insect Stings">
+                            <option value="Penicillin">
+                            <option value="Sulfa Drugs">
+                            <option value="Aspirin">
+                            <option value="Fragrances">
+                            <option value="Nickel">
+                            <option value="Gluten">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="healthRecords">Past Illnesses:</label>
+                        <input type="text" id="healthRecords" placeholder="Previous Medical Notes">
+                    </div>
+                    <div>
+                        <label for="familyHealthRecords">Family Health Records:</label>
+                        <input type="text" id="familyHealthRecords" placeholder="Family Health Records">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="currMedications">Current Medications:</label>
+                        <input type="text" id="currMedications" list="commonMedications" placeholder="Medications">
+                        <datalist id="commonMedications">
+                            <option value="Paracetamol">
+                            <option value="Ibuprofen">
+                            <option value="Amoxicillin">
+                            <option value="Metformin">
+                            <option value="Atorvastatin">
+                            <option value="Omeprazole">
+                            <option value="Aspirin">
+                            <option value="Losartan">
+                            <option value="Gabapentin">
+                            <option value="Azithromycin">
+                            <option value="Albuterol">
+                            <option value="Hydrochlorothiazide">
+                            <option value="Levothyroxine">
+                            <option value="Lisinopril">
+                            <option value="Metoprolol">
+                            <option value="Prednisone">
+                            <option value="Rosuvastatin">
+                            <option value="Sertraline">
+                            <option value="Zoloft">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="immunizationRec">Immunization Records:</label>
+                        <input type="text" id="immunizationRec" list="commonImmunizations" placeholder="i.e. Hepatitis B">
+                        <datalist id="commonImmunizations">
+                            <option value="Hepatitis B">
+                            <option value="Hepatitis A">
+                            <option value="Influenza">
+                            <option value="Measles, Mumps, and Rubella (MMR)">
+                            <option value="Polio">
+                            <option value="Tetanus">
+                            <option value="Diphtheria">
+                            <option value="Pertussis">
+                            <option value="Human Papillomavirus (HPV)">
+                            <option value="Meningococcal">
+                            <option value="Chickenpox (Varicella)">
+                            <option value="Pneumococcal">
+                            <option value="Shingles (Herpes Zoster)">
+                            <option value="COVID-19">
+                            <option value="Yellow Fever">
+                            <option value="Rabies">
+                            <option value="Typhoid">
+                            <option value="Japanese Encephalitis">
+                            <option value="Rotavirus">
+                        </datalist>
+                    </div>
+                </div>
+                
+            </div>
 
-<button onclick="window.location.href='index.html'">Back to Main Page</button>
+            <!-- Contact Information Section -->
+            <div class="form-section">
+                <h2>Contact Information</h2>
+                <div class="form-row">
+                    <div>
+                        <label for="emergencyContact">Emergency Contact:</label>
+                        <input type="text" id="emergencyContact" placeholder="Relation">
+                    </div>
+                    <div>
+                        <label for="emergencyContactPhone">Contact Information:</label>
+                        <input type="text" id="emergencyContactPhone" placeholder="Phone Number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" placeholder="Address">
+                    </div>
+                    <div>
+                        <label for="importantNotes">Important Notes:</label>
+                        <input type="text" id="importantNotes" placeholder="Important Notes">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button id="home" type="submit">Add Patient</button>
+        </form>
 
-<script src="script.js"></script>
+        <button onclick="window.location.href = 'index.html';">Back to Home</button>
+    </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="addPatientScript.js"></script>
 </body>
+
 </html>

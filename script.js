@@ -1,62 +1,66 @@
-// Fetch patients data from localStorage
-let patients = JSON.parse(localStorage.getItem('patients')) || [];
 
-// Add new patient
-document.getElementById('addPatientForm')?.addEventListener('submit', function (e) {
-    e.preventDefault();
+    // Fetch patients data from localStorage
+    let patients = JSON.parse(localStorage.getItem('patients')) || [];
 
-    const newPatient = {
-        name: document.getElementById('name').value,
-        age: document.getElementById('age').value,
-        gender: document.getElementById('gender').value,
-        illness: document.getElementById('illness').value,
-        allergies: document.getElementById('allergies').value,
-        healthRecords: document.getElementById('healthRecords').value,
-        familyHealthRecords: document.getElementById('familyHealthRecords').value,
-        nextAppointment: document.getElementById('nextAppointment').value,
-        lastAppointment: document.getElementById('lastAppointment').value,
-        emergencyContact: document.getElementById('emergencyContact').value,
-        contact: document.getElementById('contact').value,
-        address: document.getElementById('address').value,
-        importantNotes: document.getElementById('importantNotes').value,
-        healthCardNumber: document.getElementById('healthCardNumber').value,
-    };
+    // Function to display the list of patients in the table
+    function displayPatients() {
+        const table = document.getElementById('patientsTable').getElementsByTagName('tbody')[0];
+        table.innerHTML = ''; // Clear existing rows to avoid duplicates
 
-    patients.push(newPatient);
-    localStorage.setItem('patients', JSON.stringify(patients));
+        patients.forEach((patient, index) => {
+            const row = table.insertRow();
 
-    window.location.href = 'index.html';  // Redirect to main page after adding patient
-});
+            // Add patient details to the row
+            const nameCell = row.insertCell(0);
+            nameCell.textContent = patient.name;
+            nameCell.style.cursor = "context-menu"; // Change cursor to indicate right-click is supported
+            
+            // Add the remaining cells
+            row.insertCell(1).textContent = patient.contact;
+            row.insertCell(2).textContent = patient.address;
+            row.insertCell(3).textContent = patient.healthCardNumber;
 
-// Display the list of patients on the main page
-function displayPatients() {
-    const table = document.getElementById('patientsTable').getElementsByTagName('tbody')[0];
+            // Add the "Details" link
+            const detailsCell = row.insertCell(4);
+            const link = document.createElement('a');
+            link.href = `patientDetails.html?id=${index}`;
+            link.textContent = 'Details';
+            link.classList.add('details-button');
+            detailsCell.appendChild(link);
 
-    patients.forEach((patient, index) => {
-        const row = table.insertRow();
-        row.insertCell(0).textContent = patient.name;
-        row.insertCell(1).textContent = patient.contact;
-        row.insertCell(2).textContent = patient.address;
-        row.insertCell(3).textContent = patient.healthCardNumber;
-        const detailsCell = row.insertCell(4);
-        const link = document.createElement('a');
-        link.href = `patientDetails.html?id=${index}`;
-        link.textContent = 'Details';
-        detailsCell.appendChild(link);
-    });
-}
+            // Right-click (contextmenu) event listener on the name cell
+            nameCell.addEventListener('contextmenu', function (e) {
+                e.preventDefault(); // Prevent the default right-click menu
 
-// Search patients
-function searchPatient() {
-    const searchTerm = document.getElementById('searchBar').value.toLowerCase();
-    const table = document.getElementById('patientsTable');
-    const rows = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < rows.length; i++) {
-        const nameCell = rows[i].cells[0];
-        const name = nameCell.textContent.toLowerCase();
-        rows[i].style.display = name.includes(searchTerm) ? '' : 'none';
+                // Show confirmation dialog
+                const confirmDelete = confirm(`Are you sure you want to delete ${patient.name} from the records?`);
+                if (confirmDelete) {
+                    deletePatient(index); // Call delete function
+                }
+            });
+        });
     }
-}
 
-displayPatients();
+    // Function to delete a patient
+    function deletePatient(index) {
+        patients.splice(index, 1); // Remove the selected patient from the array
+        localStorage.setItem('patients', JSON.stringify(patients)); // Update localStorage
+        displayPatients(); // Refresh the table
+    }
+
+    // Search patients
+    function searchPatient() {
+        const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+        const table = document.getElementById('patientsTable');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < rows.length; i++) {
+            const nameCell = rows[i].cells[0];
+            const name = nameCell.textContent.toLowerCase();
+            rows[i].style.display = name.includes(searchTerm) ? '' : 'none';
+        }
+    }
+
+    // Initial display of patients
+    displayPatients();
+

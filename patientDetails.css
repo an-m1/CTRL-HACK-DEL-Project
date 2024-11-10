@@ -1,0 +1,182 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c5e6f4; /* Light baby blue */
+    margin: 0;
+    padding: 20px; /* Add spacing around the entire page */
+    color: #333; /* Darker text for readability */
+  }
+  
+  /* Container Styling */
+  .container {
+    width: 90%;
+    margin: 20px auto; /* Center the container with top/bottom spacing */
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Add padding inside the container for breathing room */
+  }
+  
+  /* Title Styling */
+   h1 {
+    font-size: 2.5rem; /* Larger font size for emphasis */
+    color: #009999; /* Turquoise */
+    margin: 0 0 20px 0; /* Add space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px; /* Slight spacing between letters */
+    margin-bottom: 30px;
+  }
+
+/* Container for patient details */
+.patient-info {
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    border-radius: 12px; /* Smooth edges */
+    overflow: hidden; /* Ensure rows stay within container */
+    padding: 0; /* Remove padding for fluid row appearance */
+}
+
+/* Row styling with alternating colors */
+.patient-info div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.patient-info div:nth-child(odd) {
+    background-color: #e8f7fc; /* Light blue */
+}
+
+.patient-info div:nth-child(even) {
+    background-color: #d9f0f9; /* Slightly darker blue */
+}
+
+/* Hover effect for rows */
+.patient-info div:hover {
+    background-color: #bde4f3; /* Highlight on hover */
+    cursor: pointer;
+}
+
+/* Text styling within rows */
+.patient-info span {
+    font-weight: bold;
+    color: #4a4a4a;
+    flex-grow: 1; /* Ensure text fills the available space */
+}
+
+/* Edit button styling */
+.edit-buttons {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Push the button to the far right */
+}
+
+.edit-buttons img {
+    width: 24px; /* Slightly larger for better visibility */
+    height: 24px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.edit-buttons img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Button styling */
+button {
+    background-color: #00a5cf;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px; /* More rounded for modern feel */
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+    margin: 15px auto;
+    display: block;
+}
+
+button:hover {
+    background-color: #007ea8;
+}
+
+button:active {
+    background-color: #005f7a;
+}
+
+/* Smooth scrolling for a fluid appearance */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hiding scrollbars visually while keeping scrolling functional */
+::-webkit-scrollbar {
+    width: 0; /* Hide scrollbar visually */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+
+/* Styling for the input text box */
+.patient-info div input[type="text"] {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 8px 120px;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Rounded edges for a smooth look */
+    width: 60%; /* Ensure the text box takes up enough space */
+    max-width: 400px; /* Prevent it from getting too wide */
+    margin: 0 auto; /* Center the text box horizontally */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center-align text and cursor */
+    height: 25px; /* Set consistent height for the text box */
+    line-height: 40px; /* Vertically center the text within the box */
+}
+
+/* Styling for the input box on focus */
+.patient-info div input[type="text"]:focus {
+    outline: none; /* Remove default outline */
+    border-color: #00a5cf; /* Highlight border on focus */
+    box-shadow: 0 0 8px rgba(0, 165, 207, 0.5); /* Add subtle glow effect */
+}
+
+/* Styling for Save and Close buttons */
+.patient-info div button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 6px; /* Rounded corners for a modern feel */
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for consistency */
+    transition: transform 0.2s ease;
+}
+
+.patient-info div button:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.patient-info div button:active {
+    transform: scale(0.95); /* Slight shrink on click */
+}
+
+/* Centering input and buttons */
+.patient-info div {
+    gap: 20px; /* Space between input and buttons */
+    justify-content: center; /* Center all content in the row */
+}
