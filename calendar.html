@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial="1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calendar.css">
     <title>Patient Appointment Calendar</title>
     <style>
         /* Style updates for the calendar and table */
@@ -94,11 +96,12 @@
 <h1>Patient Appointment Calendar</h1>
 
 <div class="search-container">
+    <h3>Existing Appointments</h3>
     <input type="text" id="searchBar" placeholder="Search for a patient by name..." oninput="searchPatient()">
 </div>
 
 <!-- Table for displaying all existing patients -->
-<h3>Existing Appointments</h3>
+
 <table id="appointmentTable" style="display:none;">
     <thead>
         <tr>

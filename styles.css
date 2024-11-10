@@ -182,3 +182,79 @@ footer {
   transform: translateY(0); /* Reset the lift effect on click */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Original shadow on click */
 }
+
+.description {
+    background-color: #e8f4fa; /* Soft blue background to match the theme */
+    border: 1px solid #d1e3ed; /* Subtle border for definition */
+    border-radius: 10px; /* Rounded corners to match the theme */
+    padding: 20px; /* Spacing around the content */
+    max-width: 900px; /* Adjusted width for alignment */
+    margin: 20px auto; /* Center alignment */
+    font-family: 'Arial', sans-serif; /* Simple and clean font */
+    color: #003c58; /* Dark teal text for readability */
+    box-shadow: 0 2px 5px rgba(0, 60, 88, 0.15); /* Light shadow for depth */
+    text-align: center; /* Center-align content */
+}
+
+.description h3 {
+    font-size: 1.6rem; /* Adjusted font size for heading */
+    color: #005f85; /* Blue-teal color for the heading */
+    margin-bottom: 15px; /* Space below the heading */
+    font-weight: bold; /* Bold for emphasis */
+}
+
+.description p {
+    font-size: 1rem; /* Standard text size */
+    line-height: 1.8; /* Better readability */
+    margin: 0 auto; /* Center the paragraph */
+    text-align: justify; /* Justify text for a polished appearance */
+}
+.description {
+  background: linear-gradient(145deg, #e0f7ff, #d1e7f8); /* Subtle gradient for modern appeal */
+  border-radius: 12px; /* Rounded corners */
+  padding: 30px; /* Spacious padding for a clean layout */
+  max-width: 850px; /* Align width to match the theme */
+  margin: 30px auto; /* Centered on the page */
+  font-family: 'Poppins', sans-serif; /* Modern, clean font */
+  color: #003d5e; /* Dark teal text for contrast */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Larger shadow for depth */
+  text-align: left; /* Left-aligned text for a professional look */
+}
+
+.description h3 {
+  font-size: 2rem; /* Larger, bold heading for emphasis */
+  color: #0073a8; /* Bright teal for a fresh, modern style */
+  margin-bottom: 20px; /* Space between heading and text */
+  text-align: center; /* Centered heading */
+  text-transform: uppercase; /* Modern uppercase styling */
+  letter-spacing: 1px; /* Slight spacing for a sleek effect */
+  font-weight: 600; /* Slightly bolder heading */
+}
+
+.description p {
+  font-size: 1.1rem; /* Slightly larger paragraph text */
+  line-height: 1.8; /* Improved readability */
+  margin: 0 auto; /* Centered container */
+  color: #005375; /* Subtle dark blue text for contrast */
+  text-align: justify; /* Justify text for polished appearance */
+}
+
+.description p span {
+  color: #009999; /* Highlight important words in teal */
+  font-weight: bold; /* Emphasize keywords */
+}
+
+@media (max-width: 768px) {
+  .description {
+      padding: 20px; /* Adjust padding for smaller screens */
+      max-width: 90%; /* Reduce width on mobile */
+  }
+
+  .description h3 {
+      font-size: 1.6rem; /* Adjust heading size for mobile */
+  }
+
+  .description p {
+      font-size: 1rem; /* Adjust paragraph size for readability */
+  }
+}

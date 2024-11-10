@@ -1,0 +1,207 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Title Styling */
+ h1 {
+    font-size: 2.5rem; /* Larger font size for emphasis */
+    color: #009999; /* Turquoise */
+    margin: 0 0 20px 0; /* Add space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px; /* Slight spacing between letters */
+    margin-bottom: 10px;
+  }
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Calendar Navigation */
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin: 20px;
+}
+
+.month-navigation button {
+    background-color: #00796b;
+    color: white;
+}
+
+.month-navigation button:hover {
+    background-color: #004d40;
+}
+
+.month-navigation h2 {
+    margin: 0;
+}
+
+/* Weekday Row */
+.weekday-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: #00796b;
+    padding: 10px 0;
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 2px solid #004d40;
+}
+
+.calendar .day {
+    background-color: #ffffff;
+    border: 1px solid #004d40;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+}
+
+.calendar .day:hover {
+    background-color: #98e1d9;
+}
+
+.day .appointments {
+    margin-top: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+.day button {
+    background-color: #009688;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.day button:hover {
+    background-color: #004d40;
+}
+
+/* Appointment Table */
+.appointment-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-table th {
+    background-color: #00796b;
+    color: white;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+.appointment-table td {
+    background-color: #e0f2f1;
+    padding: 10px;
+    border: 1px solid #004d40;
+    text-align: center;
+}
+
+.appointment-table tr:hover {
+    background-color: #b2dfdb;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h3 {
+    text-align: center;
+    color: #004d40;
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-container button {
+    width: 100%;
+    background-color: #00796b;
+    color: white;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: #004d40;
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-container input {
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: #00796b;
+}
+
+/* Back to Home Button */
+button[onclick*="window.location.href"] {
+    margin: 20px auto;
+    display: block;
+    background-color: #004d40;
+    color: white;
+}
+
+button[onclick*="window.location.href"]:hover {
+    background-color: #003d33;
+}
