@@ -98,7 +98,7 @@
 </div>
 
 <!-- Table for displaying all existing patients -->
-<h3>Existing Patients</h3>
+<h3>Existing Appointments</h3>
 <table id="appointmentTable" style="display:none;">
     <thead>
         <tr>
@@ -149,22 +149,24 @@
 
 <div class="form-container" id="appointmentForm">
     <h3>Add/Edit Appointment</h3>
-    <form id="appointmentFormContent">
-        <label for="patientName">Patient Name:</label>
-        <input type="text" id="patientName" required><br>
-        <label for="healthCardNumber">Health Card Number:</label>
-        <input type="text" id="healthCardNumber" required><br>
-        <label for="appointmentTime">Appointment Time:</label>
-        <input type="time" id="appointmentTime" required><br>
-        <label for="appointmentDate">Appointment Date:</label>
-        <input type="date" id="appointmentDate" required><br>
-        <button type="submit">Save Appointment</button>
-        <button type="button" onclick="cancelAppointment()">Cancel</button>
-    </form>
+    <!-- Inside the form for adding/editing appointments -->
+<form id="appointmentFormContent">
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" required><br>
+    <label for="healthCardNumber">Health Card Number:</label>
+    <input type="text" id="healthCardNumber" required ><br>
+    <label for="appointmentTime">Appointment Time:</label>
+    <input type="time" id="appointmentTime" required><br>
+    <label for="appointmentDate">Appointment Date:</label>
+    <input type="date" id="appointmentDate" required><br>
+    <button type="submit">Save Appointment</button>
+    <button type="button" onclick="cancelAppointment()">Cancel</button>
+</form>
+
 </div>
 
 <!-- Single Add Appointment Button -->
-<button id="addAppointmentBtn" onclick="openAppointmentForm()">Add Appointment</button>
+<!-- <button id="addAppointmentBtn" onclick="openAppointmentForm()">Add Appointment</button> -->
 
 <button onclick="window.location.href='index.html'">Back to Home</button>
 
