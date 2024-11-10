@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Appointment Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            margin-top: 20px;
+        }
+        .calendar .day {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            position: relative;
+            min-height: 100px;
+        }
+        .day .appointments {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #333;
+        }
+        .day button {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .day button:hover {
+            background-color: #45a049;
+        }
+        .form-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .form-container input, .form-container select {
+            padding: 5px;
+            margin: 5px;
+        }
+        .form-container button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .month-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Patient Appointment Calendar</h1>
+
+<div class="month-navigation">
+    <button onclick="changeMonth(-1)">&#8249; Previous</button>
+    <h2 id="monthName"></h2>
+    <button onclick="changeMonth(1)">Next &#8250;</button>
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+<div class="form-container" id="appointmentForm">
+    <h3>Add New Appointment</h3>
+    <form id="appointmentFormContent">
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" required><br>
+        <label for="appointmentTime">Appointment Time:</label>
+        <input type="time" id="appointmentTime" required><br>
+        <label for="appointmentDate">Appointment Date:</label>
+        <input type="date" id="appointmentDate" required><br>
+        <button type="submit">Save Appointment</button>
+        <button type="button" onclick="cancelAppointment()">Cancel</button>
+    </form>
+</div>
+<button onclick="window.location.href='index.html'">Back to Home</button>
+
+
+<script src="calendarScript.js"></script>
+
+</body>
+</html>

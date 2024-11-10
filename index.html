@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthcare Web App</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Database</title>
+    <style>
+        /* Add some basic styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Healthcare Web App</h1>
-    <nav>
-      <a href="#records">Health Records</a>
-      <a href="#messaging">Secure Messaging</a>
-      <a href="#features">Features</a>
-    </nav>
-  </header>
 
-  <main>
-    <section id="records">
-      <h2>Access Your Health Records</h2>
-      <p>View your medical history, test results, and appointments securely anytime, anywhere.</p>
-      <button id="viewRecordsBtn">View Records</button>
-    </section>
+<h1>Patient Database</h1>
 
-    <section id="messaging">
-      <h2>Secure Messaging</h2>
-      <p>Communicate directly with your healthcare provider securely and conveniently.</p>
-      <textarea id="messageBox" placeholder="Type your message here"></textarea>
-      <button id="sendMessageBtn">Send Message</button>
-    </section>
+<!-- Search Bar -->
+<input type="text" id="searchBar" onkeyup="searchPatient()" placeholder="Search by name...">
+<br><br>
 
-    <section id="features">
-      <h2>Why Choose Us?</h2>
-      <ul>
-        <li>24/7 health records access</li>
-        <li>Encrypted and secure communication</li>
-        <li>Customizable white-label solution</li>
-      </ul>
-    </section>
-  </main>
+<!-- Table displaying patient info -->
+<table id="patientsTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Health Card No.</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Patients will be listed here -->
+    </tbody>
+</table>
 
-  <footer>
-    <p>© 2024 Healthcare Web App. All rights reserved.</p>
-  </footer>
+<!-- Button to go to add new patient page -->
+<button onclick="window.location.href='addPatient.html'">Add New Patient</button>
+<!-- Add this button to your index.html -->
+<button onclick="window.location.href = 'calendar.html';">Make an Appointment</button>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
