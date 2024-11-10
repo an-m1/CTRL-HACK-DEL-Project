@@ -1,55 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Database</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Riverside Medical Institution</title>
     <style>
         /* Add some basic styles */
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             padding: 8px;
             text-align: left;
             border: 1px solid #ddd;
         }
+
         input[type="text"] {
             padding: 8px;
             margin-bottom: 12px;
         }
     </style>
+
+    <header>
+        <h1>Riverside Medical Institution</h1>
+    </header>
 </head>
+
 <body>
 
-<h1>Patient Database</h1>
+    <h2>
+        Patient Database
+    </h2>
 
-<!-- Search Bar -->
-<input type="text" id="searchBar" onkeyup="searchPatient()" placeholder="Search by name...">
-<br><br>
+    <div class="search-bar">
+        <input id="searchBar" type="text" placeholder="🔍   Search by name......" oninput="searchPatient()">
+    </div>
+    <!-- Table displaying patient info -->
+    <table id="patientsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Health Card No.</th>
+                <th>More Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Patients will be listed here -->
+        </tbody>
+    </table>
 
-<!-- Table displaying patient info -->
-<table id="patientsTable">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Contact</th>
-            <th>Address</th>
-            <th>Health Card No.</th>
-            <th>Details</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Patients will be listed here -->
-    </tbody>
-</table>
+    <div class="button-container">
+        <!-- Button to go to add new patient page -->
+        <button onclick="window.location.href='addPatient.html'">Add New Patient</button>
+        <button onclick="window.location.href='calendar.html'">Make an Appointment</button>
+    </div>
 
-<!-- Button to go to add new patient page -->
-<button onclick="window.location.href='addPatient.html'">Add New Patient</button>
-<!-- Add this button to your index.html -->
-<button onclick="window.location.href = 'calendar.html';">Make an Appointment</button>
+    <script>
+        // Fetch patients data from localStorage
+        let patients = JSON.parse(localStorage.getItem('patients')) || [];
 
-<script src="script.js"></script>
+        // Display the list of patients on the main page
+        function displayPatients() {
+            const table = document.getElementById('patientsTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = ''; // Clear existing rows to avoid duplicates
+
+            patients.forEach((patient, index) => {
+                const row = table.insertRow();
+                row.insertCell(0).textContent = patient.name;
+                row.insertCell(1).textContent = patient.contact;
+                row.insertCell(2).textContent = patient.address;
+                row.insertCell(3).textContent = patient.healthCardNumber;
+                const detailsCell = row.insertCell(4);
+                const link = document.createElement('a');
+                link.href = `patientDetails.html?id=${index}`;
+                link.textContent = 'Details';
+                link.classList.add('details-button'); // Add a class to the link
+                detailsCell.appendChild(link);
+
+                // Add right-click (contextmenu) event listener for deletion
+                row.addEventListener('contextmenu', function (e) {
+                    e.preventDefault(); // Prevent the default right-click menu
+                    const confirmDelete = confirm(`Are you sure you want to delete the entry for ${patient.name}?`);
+                    if (confirmDelete) {
+                        deletePatient(index);
+                    }
+                });
+            });
+        }
+
+        // Function to delete a patient
+        function deletePatient(index) {
+            patients.splice(index, 1); // Remove the selected patient from the array
+            localStorage.setItem('patients', JSON.stringify(patients)); // Update localStorage
+            displayPatients(); // Refresh the table
+        }
+
+        // Search patients
+        function searchPatient() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const table = document.getElementById('patientsTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const nameCell = rows[i].cells[0];
+                const name = nameCell.textContent.toLowerCase();
+                rows[i].style.display = name.includes(searchTerm) ? '' : 'none';
+            }
+        }
+
+        displayPatients();
+    </script>
+
+    <body>
+        <h3>
+            Scheduling
+        </h3>
+    </body>
 </body>
+
 </html>

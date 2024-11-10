@@ -1,66 +1,184 @@
+/* General Body Styling */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  background-color: #E8F8FF; /* Light baby blue */
+  margin: 0;
+  padding: 20px; /* Add spacing around the entire page */
+  color: #333; /* Darker text for readability */
 }
 
-h1 {
+/* Container Styling */
+.container {
+  width: 90%;
+  margin: 20px auto; /* Center the container with top/bottom spacing */
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding inside the container for breathing room */
+}
+
+/* Title Styling */
+header h1 {
+  font-size: 2.5rem; /* Larger font size for emphasis */
+  color: #009999; /* Turquoise */
+  margin: 0 0 20px 0; /* Add space below the title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+  font-weight: bold;
   text-align: center;
+  letter-spacing: 1px; /* Slight spacing between letters */
+  margin-bottom: 30px;
 }
 
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-  grid-auto-rows: 50px;
+ h2 {
+  font-size: 2.0rem; /* Larger font size for emphasis */
+  color: #009999; /* Turquoise */
+  margin: 0 0 1% 0; /* Add space below the title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+  font-weight: bold;
+  text-align:left;
+  letter-spacing: 1px; /* Slight spacing between letters */
 }
 
-.calendar .day {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  background-color: #f9f9f9;
+ h3 {
+  font-size: 2.0rem; /* Larger font size for emphasis */
+  color: #009999; /* Turquoise */
+  margin: 10% 0 1% 0; /* Add space below the title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+  font-weight: bold;
+  text-align:left;
+  letter-spacing: 1px; /* Slight spacing between letters */
 }
 
-.calendar .day:hover {
-  background-color: #f0f0f0;
-}
-
-.day span {
-  display: block;
-  font-size: 16px;
-}
-
-.appointment {
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  background-color: lightblue;
-  font-size: 12px;
-  padding: 2px 5px;
-  border-radius: 5px;
-}
-
-.month-navigation {
+/* Search Bar Container */
+.search-bar {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  align-items: center;
-  font-size: 20px;
+  justify-content: right; /* Center the search bar */
+  /* margin-bottom: 10px; Add spacing below the search bar */
 }
 
+/* Search Bar Input */
+.search-bar input {
+  width: 100%;
+  max-width: 200px; /* Set a maximum width for the input */
+  padding: 12px 20px; /* Add more padding for better usability */
+  font-size: 1rem;
+  border: 1px solid #00B3B3; /* Turquoise border */
+  border-radius: 10px; /* Rounded edges for a modern look */
+  outline: none;
+  transition: all 0.3s ease-in-out; /* Smooth focus effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Search Bar Input Focus */
+.search-bar input:focus {
+  border-color: #009999; /* Darker turquoise on focus */
+  box-shadow: 0 4px 8px rgba(0, 153, 153, 0.3); /* Glow effect on focus */
+}
+
+/* Placeholder Text Styling */
+.search-bar input::placeholder {
+  color: #888; /* Light gray placeholder text */
+  font-style: italic;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #CCCCCC; /* Light gray borders */
+}
+
+table th {
+  background-color: #2e8989; /* Turquoise header */
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+table td {
+  background-color: #FFFFFF;
+  color: #333333;
+  font-size: 0.95rem;
+}
+
+table tr:hover td {
+  background-color: #E0F7F7; /* Light turquoise on hover */
+  cursor: pointer;
+}
+
+/* Buttons Container */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 20px; /* Add spacing between buttons */
+  margin-top: 30px; /* Add space between buttons and the table */
+}
+
+/* Button Styling */
 button {
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
+  font-size: 1rem;
+  color: #FFFFFF;
+  background-color: #00B3B3; /* Turquoise */
   border: none;
   border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow for depth */
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #009999; /* Darker turquoise */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: scale(0.98); /* Slight click effect */
+}
+
+/* Link Styling */
+a {
+  color: #006666; /* Turquoise link */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #004D4D; /* Darker turquoise on hover */
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+  background-color: #009999;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  border-radius: 0 0 10px 10px;
+}
+
+
+/* Styling the Details Link as a Button */
+.details-button {
+ color: rgb(118, 156, 184);
+}
+
+.details-button:hover {
+  
+  transform: translateY(-2px); /* Adds a hover lift effect */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow on hover */
+}
+
+.details-button:active {
+  transform: translateY(0); /* Reset the lift effect on click */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Original shadow on click */
 }

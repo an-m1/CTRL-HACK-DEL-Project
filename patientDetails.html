@@ -3,38 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="patientDetails.css">
+    <link rel="stylesheet" href="styles.css">
+  
     <title>Patient Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .patient-info {
-            margin: 10px 0;
-        }
-        .patient-info span {
-            font-weight: bold;
-        }
-        .edit-buttons {
-            margin-left: 10px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-        .edit-buttons img {
-            width: 20px; /* Adjust the size of the image */
-            height: 20px;
-        }
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-    </style>
+    
 </head>
 <body>
     <h1>Patient Details</h1>
@@ -55,7 +28,9 @@
         <div><span>Health Card Number: </span><span id="healthCardNumber"></span> <button class="edit-buttons" onclick="enableEditing('healthCardNumber')"><img src="./images/edit_icon.png" alt="Edit"></button></div>
     </div>
 
-    <button onclick="window.location.href = 'index.html';">Back to Lobby</button>
+    <!-- <button id="returnHomeButton" onclick="window.location.href = 'index.html';">Back to Home</button> -->
+    <button id="returnHomeButton">Return to Home</button>
+
 
     <script src="patientDetailsScript.js"></script>
 </body>

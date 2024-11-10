@@ -42,6 +42,7 @@ function displayPatients() {
         const link = document.createElement('a');
         link.href = `patientDetails.html?id=${index}`;
         link.textContent = 'Details';
+        link.classList.add('details-button'); // Add a class to the link
         detailsCell.appendChild(link);
     });
 }

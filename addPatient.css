@@ -1,0 +1,115 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E8F8FF; /* Light baby blue */
+    margin: 0;
+    padding: 20px; /* Add spacing around the entire page */
+    color: #333; /* Darker text for readability */
+}
+
+/* Container Styling */
+.container {
+    width: 90%;
+    margin: 20px auto; /* Center the container with top/bottom spacing */
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Add padding inside the container for breathing room */
+}
+
+/* Title Styling */
+header h1 {
+    font-size: 2.5rem; /* Larger font size for emphasis */
+    color: #009999; /* Turquoise */
+    margin: 0 0 20px 0; /* Add space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px; /* Slight spacing between letters */
+}
+
+/* Section Styling */
+.form-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #CCEDED; /* Light turquoise border */
+    border-radius: 8px;
+    background-color: #F9FDFD; /* Very light turquoise */
+}
+
+.form-section h2 {
+    font-size: 1.5rem;
+    color: #009999;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #CCEDED;
+    padding-bottom: 5px;
+}
+
+/* Form Row Styling */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-row > div {
+    flex: 1;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #009999;
+    outline: none;
+}
+
+/* Buttons */
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #00B3B3; /* Turquoise */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #009999;
+    transform: translateY(-2px);
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    text-align: center;
+    background-color: #CCCCCC;
+    color: #333;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #AAAAAA;
+    transform: translateY(-2px);
+}

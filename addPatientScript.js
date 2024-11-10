@@ -11,10 +11,11 @@ document.getElementById('addPatientForm')?.addEventListener('submit', function (
         allergies: document.getElementById('allergies').value,
         healthRecords: document.getElementById('healthRecords').value,
         familyHealthRecords: document.getElementById('familyHealthRecords').value,
-        nextAppointment: document.getElementById('nextAppointment').value,
-        lastAppointment: document.getElementById('lastAppointment').value,
+        currMedications: document.getElementById('currMedications').value,
+        immunizationRec: document.getElementById('immunizationRec').value,
         emergencyContact: document.getElementById('emergencyContact').value,
-        contact: document.getElementById('contact').value,
+        personalContact: document.getElementById('personalContact').value, // Updated
+        emergencyContactPhone: document.getElementById('emergencyContactPhone').value, // Updated
         address: document.getElementById('address').value,
         importantNotes: document.getElementById('importantNotes').value,
         healthCardNumber: document.getElementById('healthCardNumber').value,
